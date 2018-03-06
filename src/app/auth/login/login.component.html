@@ -1,0 +1,21 @@
+<form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onLogin(f)" #f="ngForm">
+  <mat-form-field color="accent">
+    <input matInput 
+      placeholder="email"
+      name="email"
+      email
+      ngModel>
+      <mat-error>Invalid or missing email.</mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="accent">
+    <input matInput 
+      placeholder="password"
+      name="password"
+      password
+      ngModel>
+  </mat-form-field>
+
+  <button *ngIf="!(isLoading$ | async)" type="submit" mat-button color="accent" [disabled]="!f.valid">Login</button>
+  <mat-spinner *ngIf="isLoading$ | async" color="accent" diameter="40"></mat-spinner>
+</form>

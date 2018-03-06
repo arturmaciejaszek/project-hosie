@@ -8,9 +8,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 
+import { AuthService } from './auth/auth.service';
 import { reducers } from './app.reducer';
 import { environment } from '../environments/environment';
 
@@ -35,6 +39,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     StoreModule.forRoot(reducers),
+    AuthModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -42,8 +47,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
           deps: [HttpClient]
       }
     }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production // Restrict extension to log-only mode
+    })
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

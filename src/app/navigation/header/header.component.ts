@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+
+import { AuthService } from './../../auth/auth.service';
+import * as fromRoot from '../../app.reducer';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +11,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Output() navbarEmitter = new EventEmitter<void>();
+  isAuth$: Observable<boolean>;
 
-  constructor() { }
+  constructor(private af: AuthService, private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
+    this.isAuth$ = this.store.select( fromRoot.getIsAuthenticated );
+  }
+
+  openSideNav() {
+    this.navbarEmitter.emit();
+  }
+
+  onLogout() {
+    this.af.logout();
   }
 
 }

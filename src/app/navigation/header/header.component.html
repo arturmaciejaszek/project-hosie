@@ -1,10 +1,15 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
-  <button mat-icon-button><mat-icon>home</mat-icon></button>
+<mat-toolbar color="primary" class="mat-elevation-z8" role="header">
+  <button mat-icon-button (click)="openSideNav()"><mat-icon>home</mat-icon></button>
   <span>Project Hostess</span>
 
   <!-- This fills the remaining space of the current row -->
   <span fxFlex></span>
 
-  <span>Right Aligned Text</span>
+  <button *ngIf="!(isAuth$ | async)" mat-button routerLink="/register">Join Us</button>
+
+  <button *ngIf="!(isAuth$ | async)" mat-button [matMenuTriggerFor]="authMenu">Login</button>
+  <mat-menu #authMenu="matMenu" overlapTrigger="false">
+    <app-login (click)="$event.stopPropagation()"></app-login>
+  </mat-menu>
+  <button *ngIf="isAuth$ | async" mat-button (click)="onLogout()">Logout</button>  
 </mat-toolbar>
-  
