@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -14,14 +15,21 @@ import { reducers } from './app.reducer';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
+import { MainComponent } from './main/main.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
+    HeaderComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     SharedModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

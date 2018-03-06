@@ -2,7 +2,6 @@
 
 # environments
 /src/environments
-/environments
 
 # compiled output
 /dist
