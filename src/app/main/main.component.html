@@ -2,7 +2,7 @@
   <mat-sidenav #sidenav role="navigation">
     ASD
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content fxFlex>
     <app-header (navbarEmitter)="sidenav.open()"></app-header>
     <main>
       <router-outlet></router-outlet>

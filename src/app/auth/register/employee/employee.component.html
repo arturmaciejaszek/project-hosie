@@ -1,0 +1,71 @@
+<mat-card fxLayout="row" fxLayoutGap="20px">
+  <form [formGroup]="employeeForm" 
+        (ngSubmit)="onSubmit()" 
+        fxFlex="40%" 
+        fxLayout="column" 
+        fxLayoutGap="10px">
+
+    <mat-form-field color="accent">
+      <input matInput 
+      placeholder="email"
+      name="email"
+      autocomplete="email"
+      formControlName="email">
+      <mat-error>Invalid or missing email.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+      <input matInput 
+      placeholder="password"
+      name="password"
+      type="password"
+      autocomplete="new-password"
+      formControlName="password"
+      #passInput>
+      <mat-error>Password should have at least 6 characters.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+      <input matInput 
+      placeholder="confirm password"
+      name="cPassword"
+      type="password"
+      autocomplete="off"
+      formControlName="cPassword">
+      <mat-error *ngIf="employeeForm.hasError('mismatch')">Mismatched passwords.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+      <input matInput 
+      placeholder="first name"
+      name="name"
+      autocomplete="name"
+      formControlName="name">
+      <mat-hint>It will be displayed on the start so first name is enough</mat-hint>
+      <mat-error>Name should have at least 3 characters.</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="terms">Terms and conditions</mat-checkbox>
+
+    <button *ngIf="!(isLoading$ | async)" type="submit" mat-button color="accent" [disabled]="employeeForm.invalid">Register</button>
+    <mat-spinner *ngIf="isLoading$ | async" color="accent" diameter="40"></mat-spinner>
+  </form>
+
+  <div fxFlex="60%">
+    <h4>Terms and conditions</h4>
+    <div class="tc">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque reiciendis odio tempora expedita? Doloribus maxime placeat magni? Totam, reprehenderit quidem! Corrupti id blanditiis quisquam. Facere corporis nam corrupti pariatur velit!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem mollitia ipsa et hic quam laudantium, consequatur dicta ipsum ad asperiores sunt cum adipisci, similique ipsam rerum? Vel temporibus sunt culpa.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, commodi, explicabo delectus illum dolore sunt, vitae amet enim consectetur nam illo rem recusandae ut? Iure, blanditiis. Numquam quidem quaerat modi!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea magnam vero ad fuga harum repudiandae natus recusandae. Illo sapiente, consequuntur repellendus et delectus totam a animi! Temporibus libero non excepturi?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque reiciendis odio tempora expedita? Doloribus maxime placeat magni? Totam, reprehenderit quidem! Corrupti id blanditiis quisquam. Facere corporis nam corrupti pariatur velit!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem mollitia ipsa et hic quam laudantium, consequatur dicta ipsum ad asperiores sunt cum adipisci, similique ipsam rerum? Vel temporibus sunt culpa.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, commodi, explicabo delectus illum dolore sunt, vitae amet enim consectetur nam illo rem recusandae ut? Iure, blanditiis. Numquam quidem quaerat modi!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea magnam vero ad fuga harum repudiandae natus recusandae. Illo sapiente, consequuntur repellendus et delectus totam a animi! Temporibus libero non excepturi?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque reiciendis odio tempora expedita? Doloribus maxime placeat magni? Totam, reprehenderit quidem! Corrupti id blanditiis quisquam. Facere corporis nam corrupti pariatur velit!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem mollitia ipsa et hic quam laudantium, consequatur dicta ipsum ad asperiores sunt cum adipisci, similique ipsam rerum? Vel temporibus sunt culpa.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, commodi, explicabo delectus illum dolore sunt, vitae amet enim consectetur nam illo rem recusandae ut? Iure, blanditiis. Numquam quidem quaerat modi!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea magnam vero ad fuga harum repudiandae natus recusandae. Illo sapiente, consequuntur repellendus et delectus totam a animi! Temporibus libero non excepturi?
+    </div>
+  </div>
+</mat-card>

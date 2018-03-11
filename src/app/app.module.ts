@@ -1,4 +1,4 @@
-import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -11,8 +11,9 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderModule } from './navigation/header/header.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 
 import { AuthService } from './auth/auth.service';
 import { reducers } from './app.reducer';
@@ -20,26 +21,25 @@ import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { HeaderComponent } from './navigation/header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    HeaderComponent,
     WelcomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HeaderModule,
     SharedModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    StoreModule.forRoot(reducers),
     AuthModule,
+    StoreModule.forRoot(reducers),
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -48,8 +48,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
       }
     }),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production // Restrict extension to log-only mode
+      maxAge: 25,
+      logOnly: environment.production
     })
   ],
   providers: [AuthService],

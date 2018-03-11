@@ -1,21 +1,30 @@
-<form fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onRegister(f)" #f="ngForm">
-  <mat-form-field color="accent">
-    <input matInput 
-      placeholder="email"
-      name="email"
-      email
-      ngModel>
-      <mat-error>Invalid or missing email.</mat-error>
-  </mat-form-field>
-
-  <mat-form-field color="accent">
-    <input matInput 
-      placeholder="password"
-      name="password"
-      password
-      ngModel>
-  </mat-form-field>
-
-  <button *ngIf="!(isLoading$ | async)" type="submit" mat-button color="accent" [disabled]="!f.valid">Register</button>
-  <mat-spinner *ngIf="isLoading$ | async" color="accent" diameter="40"></mat-spinner>
-</form>
+<div class="container" fxFlex="70%" fxLayout="column" fxLayoutAlign="center center">
+  <h1>Who are you?</h1>
+    <div fxLayout="row">
+      <mat-card fxFlex="40%" fxLayout="column" fxLayoutAlign="center center">
+          <mat-card-title>
+            EMPLOYEE
+          </mat-card-title>
+          <img mat-card-image src="./assets/img/hostess.jpg">	
+          <mat-card-content>
+            GET YOURSELF FOUND
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="accent"  routerLink="/newemployee">REGISTER</button>
+          </mat-card-actions>	
+      </mat-card>
+      <span fxFlex></span>
+      <mat-card fxFlex="40%" fxLayout="column" fxLayoutAlign="center center">
+          <mat-card-title>
+            CLIENT
+          </mat-card-title>
+          <img mat-card-image src="./assets/img/business.jpg">	
+          <mat-card-content>
+            FIND THE RIGHT PEOPLE FOR YOUR EVENT
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="accent" routerLink="/newclient">REGISTER</button>
+          </mat-card-actions>	
+      </mat-card>
+    </div>	
+  </div>
