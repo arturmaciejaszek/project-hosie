@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { User } from './user.model';
@@ -15,7 +16,8 @@ export class AuthService {
 
     constructor(private af: AngularFireAuth,
         private store: Store<fromRoot.State>,
-        private db: AngularFirestore ) {
+        private db: AngularFirestore,
+        private router: Router ) {
     }
 
     authMonitor() {
@@ -32,7 +34,7 @@ export class AuthService {
                         this.store.dispatch(new UI.StopLoading());
                     });
             } else {
-                this.store.dispatch( new Auth.SetUnauthenticated() );
+                this.store.dispatch(new Auth.SetUnauthenticated());
             }
         });
     }
@@ -40,7 +42,10 @@ export class AuthService {
     login(credentials: AuthData) {
         this.store.dispatch(new UI.StartLoading());
         this.af.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
-            .then(_ => this.store.dispatch( new UI.StopLoading()) )
+            .then(_ => {
+                this.store.dispatch( new UI.StopLoading());
+                this.router.navigate(['/dashboard']);
+            })
             .catch( err => {
                 console.log(err);
                 this.store.dispatch( new UI.StopLoading());
@@ -53,6 +58,7 @@ export class AuthService {
             .then( user => {
                 this.setAccess(user, regData);
                 this.store.dispatch( new UI.StopLoading());
+                this.router.navigate(['/dashboard']);
             })
             .catch( err => {
                 console.log(err);
@@ -62,6 +68,7 @@ export class AuthService {
 
     logout() {
         this.af.auth.signOut();
+        this.router.navigate(['/']);
     }
 
     updateData(data) {
