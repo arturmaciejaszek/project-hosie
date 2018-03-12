@@ -1,3 +1,122 @@
-<p>
-  client works!
-</p>
+<mat-card>
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" fxLayoutGap="30px">
+
+    <div fxLayout="row" fxLayoutGap="50px" fxLayoutAlign="center center">
+
+      <div fxLayout="column" fxLayoutGap="10px" fxFlex="30%">
+
+        <mat-form-field color="accent">
+          <input matInput 
+          placeholder="email"
+          name="email"
+          autocomplete="email"
+          formControlName="email">
+          <mat-error>Invalid or missing email.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input matInput 
+          placeholder="password"
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          formControlName="password"
+          #passInput>
+          <mat-error>Password should have at least 6 characters.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input matInput 
+          placeholder="confirm password"
+          name="cPassword"
+          type="password"
+          autocomplete="off"
+          formControlName="cPassword">
+          <mat-error *ngIf="clientForm.hasError('mismatch')">Mismatched passwords.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input matInput 
+          placeholder="name"
+          name="name"
+          autocomplete="name"
+          formControlName="name">
+          <mat-hint>It will be displayed on the start so first name is enough</mat-hint>
+          <mat-error>Name should have at least 3 characters.</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div fxFlex="60%" fxLayout="column" fxLayoutAlign="center center">
+        <h4>INVOICE INFO</h4>
+
+        <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="center">
+
+          <mat-form-field color="accent">
+            <input matInput 
+            placeholder="company name"
+            name="cName"
+            autocomplete="organization"
+            formControlName="cName">
+            <mat-error>Company name should have at least 3 characters.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field color="accent">
+            <input matInput 
+            placeholder="NIP"
+            name="nip"
+            autocomplete="off"
+            formControlName="nip">
+            <mat-error>Place Regex here</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field color="accent">
+            <input matInput 
+            placeholder="address"
+            name="address"
+            autocomplete="address-line1"
+            formControlName="address">
+            <mat-error>Cannot be empty</mat-error>
+          </mat-form-field>
+
+          <mat-form-field color="accent">
+            <input matInput 
+            placeholder="postal"
+            name="postal"
+            autocomplete="postal-code"
+            formControlName="postal">
+            <mat-error>Cannot be empty</mat-error>
+          </mat-form-field>
+
+          <mat-form-field color="accent">
+            <input matInput 
+            placeholder="city"
+            name="city"
+            autocomplete="address-line2"
+            formControlName="city">
+            <mat-error>Cannot be empty</mat-error>
+          </mat-form-field>
+
+          <mat-form-field color="accent">
+            <input matInput 
+            placeholder="country"
+            name="country"
+            autocomplete="country"
+            formControlName="country">
+            <mat-error>Cannot be empty</mat-error>
+          </mat-form-field>
+
+          <mat-checkbox formControlName="terms">Terms and conditions</mat-checkbox>
+
+        </div>
+
+        <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="accent" [disabled]="clientForm.invalid">Register</button>
+        <mat-spinner *ngIf="isLoading$ | async" color="accent" diameter="40"></mat-spinner>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</mat-card>

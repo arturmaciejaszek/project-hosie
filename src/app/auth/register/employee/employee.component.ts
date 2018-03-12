@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -22,16 +22,12 @@ export class EmployeeComponent implements OnInit {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
   }
 
-  onRegister(form: NgForm) {
-    this.authService.register(form.value);
-  }
-
   onSubmit() {
-    const email = this.employeeForm.value.email;
-    const password = this.employeeForm.value.password;
     this.authService.register({
-      email: email,
-      password: password
+      email: this.employeeForm.value.email,
+      password: this.employeeForm.value.password,
+      name: this.employeeForm.value.name,
+      access: 'employee'
     });
   }
 

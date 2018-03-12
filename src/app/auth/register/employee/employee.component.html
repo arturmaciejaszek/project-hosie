@@ -47,7 +47,7 @@
 
     <mat-checkbox formControlName="terms">Terms and conditions</mat-checkbox>
 
-    <button *ngIf="!(isLoading$ | async)" type="submit" mat-button color="accent" [disabled]="employeeForm.invalid">Register</button>
+    <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="accent" [disabled]="employeeForm.invalid">Register</button>
     <mat-spinner *ngIf="isLoading$ | async" color="accent" diameter="40"></mat-spinner>
   </form>
 
