@@ -13,11 +13,13 @@ import * as fromRoot from '../../app.reducer';
 export class HeaderComponent implements OnInit {
   @Output() navbarEmitter = new EventEmitter<void>();
   isAuth$: Observable<boolean>;
+  name$: Observable<string>;
 
   constructor(private af: AuthService, private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
-    this.isAuth$ = this.store.select( fromRoot.getIsAuthenticated );
+    this.isAuth$ = this.store.select(fromRoot.getIsAuthenticated);
+    this.name$ = this.store.select(fromRoot.getName);
   }
 
   openSideNav() {

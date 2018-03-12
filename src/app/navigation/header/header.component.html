@@ -10,5 +10,13 @@
   <mat-menu #authMenu="matMenu" overlapTrigger="false">
     <app-login (click)="$event.stopPropagation()"></app-login>
   </mat-menu>
-  <button *ngIf="isAuth$ | async" mat-button (click)="onLogout()">Logout</button>  
+
+  <button *ngIf="isAuth$ | async" mat-button [matMenuTriggerFor]="userMenu">{{ name$ | async }}</button>  
+  <mat-menu #userMenu="matMenu" overlapTrigger="false">
+    <button mat-menu-item >Dashboard</button>
+    <button mat-menu-item >Messages</button>
+    <button mat-menu-item >History</button>
+    <button mat-menu-item >Profile</button>
+    <button mat-menu-item (click)="onLogout()">Logout</button>
+  </mat-menu>
 </mat-toolbar>

@@ -21,12 +21,16 @@ export class AuthService {
     authMonitor() {
         this.af.authState.subscribe( user => {
             if (user) {
-                this.store.dispatch( new Auth.SetAuthenticated({access: null, uid: null}) );
+                this.store.dispatch(new UI.StartLoading());
                 this.db.collection('users').doc(user.uid).ref.get().then(
-                    res => this.store.dispatch( new Auth.SetAuthenticated({
+                    res => {
+                        this.store.dispatch( new Auth.SetAuthenticated({
                         access: res.data().access,
-                        uid: user.uid
-                    }) ));
+                        uid: user.uid,
+                        name: res.data().name
+                        }));
+                        this.store.dispatch(new UI.StopLoading());
+                    });
             } else {
                 this.store.dispatch( new Auth.SetUnauthenticated() );
             }
