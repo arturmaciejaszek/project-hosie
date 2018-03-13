@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.authMonitor();
+    // this.authService.authMonitor();
   }
 
 }

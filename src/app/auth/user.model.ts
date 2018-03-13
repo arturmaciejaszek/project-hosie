@@ -3,6 +3,7 @@ export interface User {
     email: string;
     access: string;
     name: string;
+    photoURL?: string;
 }
 
 export interface Client extends User {

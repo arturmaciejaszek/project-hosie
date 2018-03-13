@@ -5,7 +5,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'hprofile', loadChildren: './hostess/hostess.module#HostessModule'},
+  { path: 'h', loadChildren: './hostess/hostess.module#HostessModule'},
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'}
 ];
 

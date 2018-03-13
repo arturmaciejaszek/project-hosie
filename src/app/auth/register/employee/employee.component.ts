@@ -1,3 +1,4 @@
+import { AuthData } from './../../auth-data.model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -23,12 +24,15 @@ export class EmployeeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.register({
+    const auth: AuthData = {
       email: this.employeeForm.value.email,
       password: this.employeeForm.value.password,
+    };
+    const data: any = {
       name: this.employeeForm.value.name,
-      access: 'employee'
-    });
+      access: 'h'
+    };
+    this.authService.register(auth, data);
   }
 
   private formInit() {

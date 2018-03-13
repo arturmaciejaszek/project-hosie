@@ -1,3 +1,4 @@
+import { AuthData } from './../../auth-data.model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -24,18 +25,21 @@ export class ClientComponent implements OnInit {
 
 
   onSubmit() {
-    this.authService.register({
-      access: 'client',
+    const auth: AuthData = {
       email: this.clientForm.value.email,
       password: this.clientForm.value.password,
+    };
+    const data: any = {
       name: this.clientForm.value.name,
+      access: 'c',
       cName: this.clientForm.value.cName,
       address: this.clientForm.value.address,
       nip: this.clientForm.value.nip,
       postal: this.clientForm.value.postal,
       city: this.clientForm.value.city,
       country: this.clientForm.value.country,
-    });
+    };
+    this.authService.register(auth, data);
   }
 
   private formInit() {
