@@ -11,12 +11,12 @@
     <app-login (click)="$event.stopPropagation()"></app-login>
   </mat-menu>
 
-  <button *ngIf="isAuth$ | async" mat-button [matMenuTriggerFor]="userMenu">{{ user.name }}</button>  
+  <button *ngIf="isAuth$ | async" mat-button [matMenuTriggerFor]="userMenu">{{ user?.name }}</button>  
   <mat-menu #userMenu="matMenu" overlapTrigger="false">
     <button mat-menu-item routerLink="/dashboard">Dashboard</button>
     <button mat-menu-item (click)="test()">Events</button>
     <button mat-menu-item >History</button>
-    <button mat-menu-item routerLink="/h/{{ user.uid }}">Profile</button>
+    <button mat-menu-item routerLink="/{{ user?.access }}/{{ user?.uid }}">Profile</button>
     <button mat-menu-item (click)="onLogout()">Logout</button>
   </mat-menu>
 </mat-toolbar>
