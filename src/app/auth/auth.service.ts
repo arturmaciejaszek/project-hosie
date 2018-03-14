@@ -25,7 +25,6 @@ export class AuthService {
             this.user$ = this.af.authState.switchMap( user => {
                 if (user) {
                     this.store.dispatch(new Auth.SetAuthenticated());
-                    this.router.navigate(['/dashboard']);
                     return this.db.doc<any>(`users/${user.uid}`).valueChanges();
                 } else {
                     this.store.dispatch(new Auth.SetUnauthenticated());
@@ -49,6 +48,7 @@ export class AuthService {
             .then( user => {
                 this.updateUserData(user.uid, {...data, email: auth.email});
                 this.store.dispatch( new UI.StopLoading());
+                this.router.navigate(['/dashboard']);
             })
             .catch(err => {
                 console.log(err);
@@ -61,6 +61,7 @@ export class AuthService {
         this.af.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
         .then(_ => {
             this.store.dispatch( new UI.StopLoading());
+            this.router.navigate(['/dashboard']);
         })
         .catch( err => {
             console.log(err);

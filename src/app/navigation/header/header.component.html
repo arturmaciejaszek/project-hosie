@@ -11,7 +11,15 @@
     <app-login (click)="$event.stopPropagation()"></app-login>
   </mat-menu>
 
-  <button *ngIf="isAuth$ | async" mat-button [matMenuTriggerFor]="userMenu">{{ user?.name }}</button>  
+  <span *ngIf="isAuth$ | async">
+    <mat-spinner *ngIf="(thumb$ | async )? false : true" diameter="20" color="accent"></mat-spinner>
+  </span>
+  <button *ngIf="isAuth$ | async" 
+    mat-button 
+    [matMenuTriggerFor]="userMenu">
+    {{ user?.name }}
+    <img *ngIf="(thumb$ | async ) && (isAuth$ | async)? true : false" [src]="thumb$ | async" alt="Avatar" class="avatar">
+  </button>  
   <mat-menu #userMenu="matMenu" overlapTrigger="false">
     <button mat-menu-item routerLink="/dashboard">Dashboard</button>
     <button mat-menu-item (click)="test()">Events</button>

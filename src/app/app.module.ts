@@ -7,9 +7,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderModule } from './navigation/header/header.module';
@@ -38,6 +38,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireStorageModule,
     AuthModule,
     StoreModule.forRoot(reducers),
     TranslateModule.forRoot({

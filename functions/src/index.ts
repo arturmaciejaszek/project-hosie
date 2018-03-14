@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as gStorage from '@google-cloud/storage';
 import * as path from 'path';
-import * as os from 'os';
 import * as sharp from 'sharp';
 
 const gcs = gStorage();
@@ -48,7 +47,7 @@ export const thumbnail = functions.storage.object().onChange( event => {
     const metadata = { contentType: contentType };
     const pipeline = sharp();
 
-    const thumbFileName = `thumb_${filename}`;
+    const thumbFileName = `thumb`;
     const thumbFilePath = path.join(path.dirname(filePath), thumbFileName);
     const thumbnailUploadStream = bucket.file(thumbFilePath).createWriteStream({metadata});
 

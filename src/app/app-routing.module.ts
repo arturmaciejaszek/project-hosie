@@ -6,7 +6,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'h', loadChildren: './hostess/hostess.module#HostessModule', canLoad: [AuthGuard]},
+  { path: 'h', loadChildren: './hostess/hostess.module#HostessModule'},
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'}
 ];
 

@@ -39,7 +39,7 @@ exports.thumbnail = functions.storage.object().onChange(event => {
     const filename = path.basename(filePath);
     const metadata = { contentType: contentType };
     const pipeline = sharp();
-    const thumbFileName = `thumb_${filename}`;
+    const thumbFileName = `thumb`;
     const thumbFilePath = path.join(path.dirname(filePath), thumbFileName);
     const thumbnailUploadStream = bucket.file(thumbFilePath).createWriteStream({ metadata });
     pipeline
