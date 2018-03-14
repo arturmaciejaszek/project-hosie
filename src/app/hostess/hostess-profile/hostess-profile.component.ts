@@ -17,6 +17,7 @@ export class HostessProfileComponent implements OnInit, OnDestroy {
   hostess: any;
   thumb$: Observable<string | null>;
   workRange: string[];
+  info: string[];
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore, private afs: AngularFireStorage) { }
 
@@ -28,6 +29,7 @@ export class HostessProfileComponent implements OnInit, OnDestroy {
       .valueChanges().subscribe( hostess => {
         this.hostess = hostess;
         this.workRange = Object.keys(this.hostess.work).filter( key => this.hostess.work[key]);
+        this.info = Object.keys(this.hostess.info);
       })
     );
     this.thumb$ = this.afs.ref(`/${this.profileUID}/thumb`).getDownloadURL();

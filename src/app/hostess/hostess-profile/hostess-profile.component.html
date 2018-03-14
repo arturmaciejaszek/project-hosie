@@ -1,16 +1,16 @@
-<mat-card>
-  <h2>{{ hostess?.name }}</h2>
-  <mat-spinner *ngIf="(thumb$ | async)? false: true" diameter="70" color="accent"></mat-spinner>
-  <img mat-card-image [src]="thumb$ | async" alt="Hostess thumb photo">
-  <mat-card-content>
-    <p>
-      Info
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>DETAILS</button>
-  </mat-card-actions>
-</mat-card>
+<div>
+  <mat-spinner *ngIf="(thumb$ | async)? false : true" diameter="70" color="accent"></mat-spinner>
+  <mat-card *ngIf="(thumb$ | async)? true : false">
+    <h2>{{ hostess?.name }}</h2>
+    <img mat-card-image [src]="thumb$ | async" alt="Hostess thumb photo">
+    <mat-card-content>
+      <p *ngFor="let key of info">{{ key }}:&nbsp;{{ hostess.info[key] }}</p>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="accent">MORE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
 
 <!-- <mat-chip-list>
   <mat-chip *ngFor="let work of workRange" color="accent" selected="true">{{ work }}</mat-chip>
