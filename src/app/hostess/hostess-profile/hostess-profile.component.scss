@@ -1,13 +1,21 @@
-mat-card {
-    height: 420px;
-    width: 200px;
-    margin: 3rem auto;
+mat-spinner {
+    margin: 10rem auto;
 }
 
-h2 {
+mat-card {
+    height: 420px;
+    width: 40vw;
+}
+
+.details {
+    width: 15vw;
+    max-width: 250px;
+}
+
+mat-chip {
     text-align: center;
 }
 
-mat-spinner {
-    margin: 10rem auto;
+.langs {
+    margin-top: 2rem;
 }

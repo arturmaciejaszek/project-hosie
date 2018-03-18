@@ -1,0 +1,10 @@
+<mat-card>
+  <h2>{{ hostess?.name }}</h2>
+  <img mat-card-image [src]="thumb" alt="Hostess thumb photo">
+  <mat-card-content>
+    <p *ngFor="let key of info">{{ key }}:&nbsp;{{ hostess.info[key] }}</p>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="center center">
+    <button mat-raised-button color="accent">{{ btn }}</button>
+  </mat-card-actions>
+</mat-card>

@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-
+import { GalleryItem, ImageItem } from '@ngx-gallery/core';
 
 @Component({
   selector: 'app-hostess-profile',
@@ -18,8 +18,12 @@ export class HostessProfileComponent implements OnInit, OnDestroy {
   thumb$: Observable<string | null>;
   workRange: string[];
   info: string[];
+  langs: string[];
+  photos: GalleryItem[];
 
-  constructor(private route: ActivatedRoute, private db: AngularFirestore, private afs: AngularFireStorage) { }
+  constructor(private route: ActivatedRoute,
+    private db: AngularFirestore,
+    private afs: AngularFireStorage) { }
 
   ngOnInit() {
     this.subs.push(this.route.params.subscribe( param =>
@@ -30,9 +34,21 @@ export class HostessProfileComponent implements OnInit, OnDestroy {
         this.hostess = hostess;
         this.workRange = Object.keys(this.hostess.work).filter( key => this.hostess.work[key]);
         this.info = Object.keys(this.hostess.info);
+        this.langs = Object.keys(this.hostess.langs);
+        this.photos = this.getGallery().map( link => new ImageItem(link, link));
       })
     );
     this.thumb$ = this.afs.ref(`/${this.profileUID}/thumb`).getDownloadURL();
+  }
+
+  getGallery(): string[] {
+    const tmparray: string[] = [];
+    (<Array<string>>this.hostess.photos).forEach( url => {
+      if (tmparray.length < 10) {
+        tmparray.push(url);
+      }
+    });
+    return tmparray;
   }
 
   ngOnDestroy() {
