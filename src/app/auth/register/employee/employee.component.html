@@ -2,8 +2,7 @@
   <form [formGroup]="employeeForm" 
         (ngSubmit)="onSubmit()" 
         fxFlex="40%" 
-        fxLayout="column" 
-        fxLayoutGap="10px">
+        fxLayout="column">
 
     <mat-form-field color="accent">
       <input matInput 
@@ -43,6 +42,16 @@
       formControlName="name">
       <mat-hint>It will be displayed on the start so first name is enough</mat-hint>
       <mat-error>Name should have at least 3 characters.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+      <input matInput 
+      [max]="maxDate" 
+      [matDatepicker]="picker" 
+      placeholder="Birthdate"
+      formControlName="birthdate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-checkbox formControlName="terms">Terms and conditions</mat-checkbox>

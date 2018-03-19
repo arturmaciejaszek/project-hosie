@@ -15,12 +15,15 @@ import { AuthService } from './../../auth.service';
 export class EmployeeComponent implements OnInit {
   isLoading$: Observable<boolean>;
   employeeForm: FormGroup;
+  maxDate;
 
   constructor(private authService: AuthService, private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
     this.formInit();
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.maxDate = new Date();
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
   onSubmit() {
@@ -30,6 +33,7 @@ export class EmployeeComponent implements OnInit {
     };
     const data: any = {
       name: this.employeeForm.value.name,
+      birthdate: this.employeeForm.value.birthdate,
       access: 'h'
     };
     this.authService.register(auth, data);
@@ -48,6 +52,9 @@ export class EmployeeComponent implements OnInit {
       }),
       name: new FormControl('', {
         validators: [Validators.required, Validators.minLength(3)]
+      }),
+      birthdate: new FormControl('', {
+        validators: [Validators.required]
       }),
       terms: new FormControl('', {
         validators: Validators.requiredTrue

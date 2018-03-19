@@ -1,10 +1,60 @@
-<mat-card>
-  <h2>{{ hostess?.name }}</h2>
-  <img mat-card-image [src]="thumb" alt="Hostess thumb photo">
-  <mat-card-content>
-    <p *ngFor="let key of info">{{ key }}:&nbsp;{{ hostess.info[key] }}</p>
-  </mat-card-content>
-  <mat-card-actions fxLayoutAlign="center center">
-    <button mat-raised-button color="accent">{{ btn }}</button>
-  </mat-card-actions>
-</mat-card>
+<div *ngIf="editable; then edit else default">
+  <!-- render -->
+</div>
+
+<!-- DEFAULT CARD VIEW -->
+<ng-template #default>
+  <mat-card>
+    <h2>{{ hostess?.name }}</h2>
+    <img mat-card-image [src]="thumb" alt="Hostess thumb photo">
+    <mat-card-content>
+      <p *ngFor="let key of info">{{ key }}:&nbsp;{{ hostess.info[key] }}</p>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="accent" [routerLink]="link">{{ button }}</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<!-- EDIT CARD VIEW -->
+<ng-template #edit>
+  <mat-card>
+      <h2>{{ hostess?.name }}</h2>
+      <img mat-card-image [src]="thumb" alt="Hostess thumb photo">
+      <mat-card-content>
+
+        <mat-form-field color="accent">
+          <mat-select [value]="hostess.info.eyes">
+            <mat-option *ngFor="let eye of eyes" value="{{ eye }}">{{ eye }}</mat-option>
+          </mat-select>
+          <mat-hint>Eyes color</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <mat-select [value]="hostess.info.hair">
+            <mat-option *ngFor="let hair of hairColors" value="{{ hair }}">{{ hair }}</mat-option>
+          </mat-select>
+          <mat-hint>Hair color</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input matInput [value]="hostess.info.height">
+          <mat-hint>Height in cm</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field color="accent">
+          <input matInput [value]="hostess.info.measures">
+          <mat-hint>bust/waist/hips</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [value]="hostess.info.size">
+          <mat-hint>Clothing size</mat-hint>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <button mat-raised-button color="accent" (click)="save()">Save</button>
+      </mat-card-actions>
+  </mat-card>
+</ng-template>

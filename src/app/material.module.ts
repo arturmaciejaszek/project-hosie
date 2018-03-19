@@ -11,7 +11,10 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
-  MatGridListModule
+  MatGridListModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   } from '@angular/material';
 
 @NgModule({
@@ -27,6 +30,9 @@ import {
       MatCardModule,
       MatCheckboxModule,
       MatChipsModule,
+      MatSelectModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
     ],
     exports: [
       MatToolbarModule,
@@ -40,6 +46,9 @@ import {
       MatCardModule,
       MatCheckboxModule,
       MatChipsModule,
+      MatSelectModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
     ]
 })
 export class MaterialModule {}
