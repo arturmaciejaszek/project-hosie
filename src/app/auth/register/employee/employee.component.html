@@ -34,25 +34,45 @@
       <mat-error *ngIf="employeeForm.hasError('mismatch')">Mismatched passwords.</mat-error>
     </mat-form-field>
 
-    <mat-form-field color="accent">
-      <input matInput 
-      placeholder="first name"
-      name="name"
-      autocomplete="name"
-      formControlName="name">
-      <mat-hint>It will be displayed on the start so first name is enough</mat-hint>
-      <mat-error>Name should have at least 3 characters.</mat-error>
-    </mat-form-field>
+    <div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field color="accent" fxFlex="45%">
+          <input matInput 
+          placeholder="first name"
+          name="name"
+          autocomplete="name"
+          formControlName="name">
+          <mat-error>Name should have at least 3 characters.</mat-error>
+        </mat-form-field>
 
-    <mat-form-field color="accent">
-      <input matInput 
-      [max]="maxDate" 
-      [matDatepicker]="picker" 
-      placeholder="Birthdate"
-      formControlName="birthdate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+        <mat-form-field color="accent" fxFlex="45%">
+          <input matInput 
+          [max]="maxDate" 
+          [matDatepicker]="picker" 
+          placeholder="Birthdate"
+          formControlName="birthdate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field color="accent" fxFlex="45%">
+          <input matInput 
+          placeholder="Height in cm"
+          name="height"
+          autocomplete="off"
+          formControlName="height">
+          <span matSuffix>cm</span>
+        </mat-form-field>
+
+        <mat-form-field color="accent" fxFlex="45%">
+          <mat-select placeholder="Eyes color" formControlName="eyes">
+            <mat-option *ngFor="let eye of eyes" value="{{ eye }}">{{ eye }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
 
     <mat-checkbox formControlName="terms">Terms and conditions</mat-checkbox>
 

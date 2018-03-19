@@ -5,8 +5,8 @@ const gStorage = require("@google-cloud/storage");
 const path = require("path");
 const sharp = require("sharp");
 const gcs = gStorage();
-const THUMB_MAX_WIDTH = 200;
-const THUMB_MAX_HEIGHT = 200;
+const THUMB_MAX_WIDTH = 248;
+const THUMB_MAX_HEIGHT = 140;
 exports.thumbnail = functions.storage.object().onChange(event => {
     const object = event.data;
     const fileBucket = object.bucket;
@@ -19,7 +19,7 @@ exports.thumbnail = functions.storage.object().onChange(event => {
         console.log('This is not an image.');
         return null;
     }
-    if (path.basename(filePath).startsWith('thumb_')) {
+    if (path.basename(filePath).startsWith('thumb')) {
         console.log('already a thumbnail');
         return null;
     }

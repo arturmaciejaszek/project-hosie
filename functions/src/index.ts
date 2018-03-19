@@ -5,8 +5,8 @@ import * as sharp from 'sharp';
 
 const gcs = gStorage();
 
-const THUMB_MAX_WIDTH = 200;
-const THUMB_MAX_HEIGHT = 200;
+const THUMB_MAX_WIDTH = 248;
+const THUMB_MAX_HEIGHT = 140;
 
 export const thumbnail = functions.storage.object().onChange( event => {
     const object = event.data;
@@ -22,7 +22,7 @@ export const thumbnail = functions.storage.object().onChange( event => {
         return null;
     }
 
-    if (path.basename(filePath).startsWith('thumb_')) {
+    if (path.basename(filePath).startsWith('thumb')) {
         console.log('already a thumbnail');
         return null;
     }

@@ -3,7 +3,15 @@ export interface User {
     email: string;
     access: string;
     name: string;
-    photoURL?: string;
+}
+
+export interface Hostess extends User {
+    birthdate: Date;
+    gender: string;
+    info?: {};
+    langs?: {};
+    work?: {};
+    photos?: string[];
 }
 
 export interface Client extends User {
