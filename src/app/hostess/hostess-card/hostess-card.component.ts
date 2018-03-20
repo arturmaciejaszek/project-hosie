@@ -1,6 +1,11 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { MatDialog } from '@angular/material';
+
+import { Hostess } from './../../auth/user.model';
+import { CropComponent } from './crop/crop.component';
 
 @Component({
   selector: 'app-hostess-card',
@@ -8,26 +13,32 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./hostess-card.component.scss']
 })
 export class HostessCardComponent implements OnInit, OnChanges {
-  @Input() hostess: any;
+  @Input() hostess: Hostess;
   @Input() info: string[];
   @Input() thumb: string;
   @Input() btn: string;
   @Input() editable = false;
   link: string;
   button: string;
-  eyes: string[];
   hairColors: string[];
 
-  constructor() {
+  constructor(private afs: AngularFireStorage, private dialog: MatDialog) {
    }
 
   ngOnInit() {
-    this.eyes = ['brown', 'blue', 'green', 'hazel', 'grey' ];
     this.hairColors = ['light-blonde', 'dark-blonde', 'ginger', 'brown', 'black'];
   }
 
-  save() {
-    return false;
+  uploadThumb(e) {
+    this.dialog.open(CropComponent, {data: {
+      file: e.target.files[0],
+      uid: this.hostess.uid
+    }});
+    // const file: File = e.target.files[0];
+    // const filePath = `/${this.hostess.uid}/toThumb_${file.name}`;
+    // this.afs.upload(filePath, file)
+    //   .then( res => console.log(res))
+    //   .catch( err => console.log(err));
   }
 
   ngOnChanges() {
@@ -48,5 +59,4 @@ export class HostessCardComponent implements OnInit, OnChanges {
           return;
       }
     }
-
 }

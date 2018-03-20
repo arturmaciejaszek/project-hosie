@@ -13,28 +13,31 @@
       <mat-error>Invalid or missing email.</mat-error>
     </mat-form-field>
 
-    <mat-form-field color="accent">
-      <input matInput 
-      placeholder="password"
-      name="password"
-      type="password"
-      autocomplete="new-password"
-      formControlName="password"
-      #passInput>
-      <mat-error>Password should have at least 6 characters.</mat-error>
-    </mat-form-field>
-
-    <mat-form-field color="accent">
-      <input matInput 
-      placeholder="confirm password"
-      name="cPassword"
-      type="password"
-      autocomplete="off"
-      formControlName="cPassword">
-      <mat-error *ngIf="employeeForm.hasError('mismatch')">Mismatched passwords.</mat-error>
-    </mat-form-field>
-
+    
     <div>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field color="accent" fxFlex="45%">
+          <input matInput 
+          placeholder="password"
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          formControlName="password"
+          #passInput>
+          <mat-error>Password should have at least 6 characters.</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field color="accent" fxFlex="45%">
+          <input matInput 
+          placeholder="confirm password"
+          name="cPassword"
+          type="password"
+          autocomplete="off"
+          formControlName="cPassword">
+          <mat-error *ngIf="employeeForm.hasError('mismatch')">Mismatched passwords.</mat-error>
+        </mat-form-field>
+      </div>
+
       <div fxLayout="row" fxLayoutAlign="space-between">
         <mat-form-field color="accent" fxFlex="45%">
           <input matInput 
@@ -73,6 +76,10 @@
       </div>
     </div>
 
+    <mat-radio-group color="accent" formControlName="gender">
+      <mat-radio-button value="f">Female</mat-radio-button>
+      <mat-radio-button value="m">Male</mat-radio-button>
+    </mat-radio-group>
 
     <mat-checkbox formControlName="terms">Terms and conditions</mat-checkbox>
 

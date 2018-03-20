@@ -5,8 +5,10 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { GalleryItem, ImageItem } from '@ngx-gallery/core';
-import { AuthService } from '../../auth/auth.service';
 import { take } from 'rxjs/operators';
+
+import { AuthService } from '../../auth/auth.service';
+import { Hostess } from './../../auth/user.model';
 
 @Component({
   selector: 'app-hostess-profile',
@@ -16,7 +18,7 @@ import { take } from 'rxjs/operators';
 export class HostessProfileComponent implements OnInit, OnDestroy {
   profileUID: string;
   subs: Subscription[] = [];
-  hostess: any;
+  hostess: Hostess;
   thumb$: Observable<string | null>;
   workRange: string[];
   info: string[];
@@ -56,13 +58,15 @@ export class HostessProfileComponent implements OnInit, OnDestroy {
 
   testProfileOwnership() {
     this.subs.push(this.auth.user$.subscribe( user => {
-      if (user.uid === this.profileUID) {
-        this.btn = 'edit';
-      } else {
-        if (user.uid !== this.profileUID && user.access === 'c') {
-          this.btn = 'invite';
+      if (user) {
+        if (user.uid === this.profileUID) {
+          this.btn = 'edit';
         } else {
-          this.btn = null;
+          if (user.uid !== this.profileUID && user.access === 'c') {
+            this.btn = 'invite';
+          } else {
+            this.btn = null;
+          }
         }
       }
     }));
@@ -70,7 +74,7 @@ export class HostessProfileComponent implements OnInit, OnDestroy {
 
   fetchData() {
       this.subs.push(this.db.doc(`users/${this.profileUID}`)
-      .valueChanges().subscribe( hostess => {
+      .valueChanges().subscribe( (hostess: Hostess) => {
         this.hostess = hostess;
         this.workRange = Object.keys(this.hostess.work).filter( key => this.hostess.work[key]);
         this.info = Object.keys(this.hostess.info);

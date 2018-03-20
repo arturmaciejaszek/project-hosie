@@ -8,6 +8,42 @@ h2 {
     text-align: center;
 }
 
+.thumbContainer {
+    width: 248px;
+    height: 248px;
+    position: relative;
+    margin: 0 -24px 16px -24px;
+
+    & > button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+    }
+
+    & > input[type=file] {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    & > img {
+        object-fit: cover;
+    }
+
+    &:hover > img {
+        filter: blur(3px) brightness(80%);
+    }
+
+    &:hover > button {
+        visibility: visible;
+    }
+}
+
 
 // mat-form-field.mat-form-field {
 //     font-size: 12px;

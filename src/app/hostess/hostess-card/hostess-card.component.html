@@ -6,9 +6,11 @@
 <ng-template #default>
   <mat-card>
     <h2>{{ hostess?.name }}</h2>
+    <mat-card-subtitle>Poznań</mat-card-subtitle>
     <img mat-card-image [src]="thumb" alt="Hostess thumb photo">
     <mat-card-content>
-      <p *ngFor="let key of info">{{ key }}:&nbsp;{{ hostess.info[key] }}</p>
+      <!-- <p>age: {{ hostess?.birthdate | agePipe }}</p>
+      <p *ngFor="let key of info">{{ key }}:&nbsp;{{ hostess.info[key] }}</p> -->
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="center center">
       <button mat-raised-button color="accent" [routerLink]="link">{{ button }}</button>
@@ -20,29 +22,18 @@
 <ng-template #edit>
   <mat-card>
     <h2>{{ hostess?.name }}</h2>
-    <img
-      mat-card-image 
-      [src]="thumb" 
-      alt="Hostess thumb photo">
+    <div class="thumbContainer">
+      <img [src]="thumb" alt="Hostess thumb photo">
+      <button mat-fab (click)="upload.click()">Upload</button>
+      <input type="file" accept="image/*" (change)="uploadThumb($event)" #upload>
+    </div>
     <mat-card-content>
-
-      <mat-form-field color="accent">
-        <mat-select [value]="hostess?.info.eyes">
-          <mat-option *ngFor="let eye of eyes" value="{{ eye }}">{{ eye }}</mat-option>
-        </mat-select>
-        <mat-hint>Eyes color</mat-hint>
-      </mat-form-field>
 
       <mat-form-field color="accent">
         <mat-select [value]="hostess?.info.hair">
           <mat-option *ngFor="let hair of hairColors" value="{{ hair }}">{{ hair }}</mat-option>
         </mat-select>
         <mat-hint>Actual hair color</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field color="accent">
-        <input matInput [value]="hostess?.info.height">
-        <mat-hint>Height in cm</mat-hint>
       </mat-form-field>
 
       <mat-form-field color="accent">

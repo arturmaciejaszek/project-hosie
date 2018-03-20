@@ -36,9 +36,10 @@ export class EmployeeComponent implements OnInit {
     const data: any = {
       name: this.employeeForm.value.name,
       birthdate: this.employeeForm.value.birthdate,
+      gender: this.employeeForm.value.gender,
       info: {
         eyes: this.employeeForm.value.eyes,
-        height: this.employeeForm.value.height
+        height: this.employeeForm.value.height + ' cm'
       },
       access: 'h'
     };
@@ -67,6 +68,9 @@ export class EmployeeComponent implements OnInit {
       }),
       height: new FormControl('', {
         validators: [Validators.required, Validators.pattern(/[1-2]{1}\d{2}/g)]
+      }),
+      gender: new FormControl('', {
+        validators: [Validators.required]
       }),
       terms: new FormControl('', {
         validators: Validators.requiredTrue
