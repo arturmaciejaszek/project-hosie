@@ -14,19 +14,16 @@ import { CropComponent } from './crop/crop.component';
 })
 export class HostessCardComponent implements OnInit, OnChanges {
   @Input() hostess: Hostess;
-  @Input() info: string[];
   @Input() thumb: string;
   @Input() btn: string;
   @Input() editable = false;
   link: string;
   button: string;
-  hairColors: string[];
 
   constructor(private afs: AngularFireStorage, private dialog: MatDialog) {
    }
 
   ngOnInit() {
-    this.hairColors = ['light-blonde', 'dark-blonde', 'ginger', 'brown', 'black'];
   }
 
   uploadThumb(e) {
@@ -34,11 +31,6 @@ export class HostessCardComponent implements OnInit, OnChanges {
       file: e.target.files[0],
       uid: this.hostess.uid
     }});
-    // const file: File = e.target.files[0];
-    // const filePath = `/${this.hostess.uid}/toThumb_${file.name}`;
-    // this.afs.upload(filePath, file)
-    //   .then( res => console.log(res))
-    //   .catch( err => console.log(err));
   }
 
   ngOnChanges() {

@@ -1,21 +1,22 @@
+.container {
+    width: 90%;
+    margin: auto;
+}
+
 mat-spinner {
     margin: 10rem auto;
 }
 
-mat-card {
+.gallery, .details, .card {
     height: 420px;
-    width: 40vw;
+    margin: 3rem 1rem;
+}
+
+.gallery {
+    width: 780px;
 }
 
 .details {
-    width: 15vw;
-    max-width: 250px;
+    width: 200px;
 }
 
-mat-chip {
-    text-align: center;
-}
-
-.langs {
-    margin-top: 2rem;
-}

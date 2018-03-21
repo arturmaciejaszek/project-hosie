@@ -9,6 +9,7 @@ import { HostessProfileComponent } from './hostess-profile/hostess-profile.compo
 import { HostessCardComponent } from './hostess-card/hostess-card.component';
 import { AgePipePipe } from './age-pipe.pipe';
 import { CropComponent } from './hostess-card/crop/crop.component';
+import { HostessInfoComponent } from './hostess-info/hostess-info.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { CropComponent } from './hostess-card/crop/crop.component';
         HostessCardComponent,
         AgePipePipe,
         CropComponent,
-        ImageCropperComponent
+        ImageCropperComponent,
+        HostessInfoComponent
     ],
     imports: [
         SharedModule,

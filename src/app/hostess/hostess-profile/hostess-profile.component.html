@@ -1,34 +1,15 @@
-<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
-  <div>
-    <mat-spinner *ngIf="(thumb$ | async)? false : true" diameter="70" color="accent"></mat-spinner>
-    <app-hostess-card 
-      *ngIf="(thumb$ | async)? true : false" 
-      [hostess]="hostess" 
-      [info]="info" 
-      [thumb]="thumb$ | async"
-      [btn]="btn"
-      [editable]="editable"></app-hostess-card>
-  </div>
+<mat-spinner *ngIf="(thumb$ | async)? false : true" diameter="70" color="accent"></mat-spinner>
+<div *ngIf="(thumb$ | async)? true : false" class="container" fxLayout="row" fxLayoutAlign="center center">
 
+  <app-hostess-card 
+    [hostess]="hostess" 
+    [thumb]="thumb$ | async"
+    [btn]="btn"
+    [editable]="editable">
+  </app-hostess-card>
+  
   <mat-card class="gallery">
     <gallery [items]="photos" thumbPosition="right"></gallery>
   </mat-card>
-  
-  <mat-card class="details">
-    <div>
-    <p>Work Range:</p>  
-    <mat-chip-list fxLayout="column" class="mat-chip-list-stacked">
-      <mat-chip *ngFor="let work of workRange" color="accent" selected="true">{{ work }}</mat-chip>
-    </mat-chip-list>
-    </div>
-
-    <div class="langs">
-    <p>Languages:</p>
-    <mat-chip-list fxLayout="column" class="mat-chip-list-stacked">
-      <mat-chip *ngFor="let lang of langs" color="primary" selected="true">{{ lang }} - {{ hostess.langs[lang] }}</mat-chip>
-    </mat-chip-list>
-    </div>
-
-  </mat-card>   
 
 </div>

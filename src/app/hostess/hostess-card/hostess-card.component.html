@@ -22,31 +22,17 @@
 <ng-template #edit>
   <mat-card>
     <h2>{{ hostess?.name }}</h2>
+    <mat-card-subtitle>Poznań</mat-card-subtitle>
     <div class="thumbContainer">
       <img [src]="thumb" alt="Hostess thumb photo">
       <button mat-fab (click)="upload.click()">Upload</button>
       <input type="file" accept="image/*" (change)="uploadThumb($event)" #upload>
     </div>
     <mat-card-content>
-
-      <mat-form-field color="accent">
-        <mat-select [value]="hostess?.info.hair">
-          <mat-option *ngFor="let hair of hairColors" value="{{ hair }}">{{ hair }}</mat-option>
-        </mat-select>
-        <mat-hint>Actual hair color</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field color="accent">
-        <input matInput [value]="hostess?.info.measures">
-        <mat-hint>bust/waist/hips</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field color="accent">
-        <input matInput [value]="hostess?.info.size">
-        <mat-hint>Clothing size</mat-hint>
-      </mat-form-field>
-
+      <!-- CONTENT -->
     </mat-card-content>
-
+    <mat-card-actions fxLayoutAlign="center center">
+      <button mat-raised-button color="accent" routerLink="../">Go back</button>
+    </mat-card-actions>
   </mat-card>
 </ng-template>
